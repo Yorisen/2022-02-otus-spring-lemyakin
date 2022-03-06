@@ -13,25 +13,30 @@ public class TestingServiceImpl implements TestingService {
 
     private final TestQuestionsDao testQuestionsDao;
     private final Viewer viewer;
-    private final Integer testPassingScore;
+    private final int testPassingScore;
 
     @Override
     public void run() {
-
-        Student student = viewer.showIntroduceYourself();
-        viewer.showTheTestHasBegun();
         List<TestQuestion> testQuestions = testQuestionsDao.get();
+        int numberOfTestQuestions = testQuestions.size();
 
-        int numberOfCorrectAnswers = 0;
-        for (TestQuestion testQuestion: testQuestions) {
-            String response = viewer.showTestQuestion(testQuestion);
-            if (response.equals(testQuestion.getCorrectAnswer())) {
-                numberOfCorrectAnswers++;
+        if (numberOfTestQuestions >= testPassingScore) {
+            Student student = viewer.showIntroduceYourself();
+            viewer.showTheTestHasBegun();
+
+            int numberOfCorrectAnswers = 0;
+            for (TestQuestion testQuestion: testQuestions) {
+                String response = viewer.showTestQuestion(testQuestion);
+                if (response.equals(testQuestion.getCorrectAnswer())) {
+                    numberOfCorrectAnswers++;
+                }
             }
-        }
-        viewer.showTheTestIsOver();
+            viewer.showTheTestIsOver();
 
-        boolean isTestPassed = numberOfCorrectAnswers >= testPassingScore;
-        viewer.showResults(student, testQuestions.size(), numberOfCorrectAnswers,  isTestPassed);
+            boolean isTestPassed = numberOfCorrectAnswers >= testPassingScore;
+            viewer.showResults(student, numberOfTestQuestions, numberOfCorrectAnswers,  isTestPassed);
+        } else {
+            viewer.showInvalidPassingScore(numberOfTestQuestions, testPassingScore);
+        }
     }
 }

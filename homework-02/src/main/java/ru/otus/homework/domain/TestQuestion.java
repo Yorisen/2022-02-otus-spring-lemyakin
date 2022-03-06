@@ -1,14 +1,14 @@
 package ru.otus.homework.domain;
 
-import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
-import java.util.Objects;
 
 @RequiredArgsConstructor
 @Getter
+@EqualsAndHashCode
 public class TestQuestion {
     private final String question;
     private final String correctAnswer;

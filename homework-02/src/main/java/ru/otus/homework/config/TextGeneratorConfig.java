@@ -2,15 +2,14 @@ package ru.otus.homework.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import ru.otus.homework.viewer.Viewer;
-import ru.otus.homework.viewer.ViewerCmd;
 import ru.otus.homework.viewer.text.TextGenerator;
+import ru.otus.homework.viewer.text.TextGeneratorEn;
 
 @SuppressWarnings("unused")
 @Configuration
-public class ViewerConfig {
+public class TextGeneratorConfig {
     @Bean
-    public Viewer viewer(TextGenerator textGenerator) {
-        return new ViewerCmd(textGenerator);
+    public TextGenerator textGenerator() {
+        return new TextGeneratorEn();
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import ru.otus.homework.reader.Reader;
 import ru.otus.homework.reader.ReaderCSV;
 
+@SuppressWarnings("unused")
 @Configuration
 public class ReadersConfig {
 

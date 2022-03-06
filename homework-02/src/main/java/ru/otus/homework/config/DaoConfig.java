@@ -6,6 +6,7 @@ import ru.otus.homework.dao.TestQuestionsDao;
 import ru.otus.homework.dao.TestQuestionsDaoCSV;
 import ru.otus.homework.reader.Reader;
 
+@SuppressWarnings("unused")
 @Configuration
 public class DaoConfig {
 

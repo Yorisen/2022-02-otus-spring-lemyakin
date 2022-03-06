@@ -8,6 +8,7 @@ import ru.otus.homework.service.TestingService;
 import ru.otus.homework.service.TestingServiceImpl;
 import ru.otus.homework.viewer.Viewer;
 
+@SuppressWarnings("unused")
 @Configuration
 public class ServicesConfig {
 
