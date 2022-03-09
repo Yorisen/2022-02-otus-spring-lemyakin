@@ -1,12 +1,14 @@
 package ru.otus.homework.dao;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import ru.otus.homework.domain.TestQuestion;
 import ru.otus.homework.reader.Reader;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 @RequiredArgsConstructor
 public class TestQuestionsDaoCSV implements TestQuestionsDao {
     private final Reader reader;

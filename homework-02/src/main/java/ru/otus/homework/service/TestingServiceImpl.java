@@ -1,6 +1,7 @@
 package ru.otus.homework.service;
 
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 import ru.otus.homework.dao.TestQuestionsDao;
 import ru.otus.homework.domain.Student;
 import ru.otus.homework.domain.TestQuestion;
@@ -8,12 +9,20 @@ import ru.otus.homework.viewer.Viewer;
 
 import java.util.List;
 
-@RequiredArgsConstructor
+@SuppressWarnings("unused")
+@Service
 public class TestingServiceImpl implements TestingService {
 
     private final TestQuestionsDao testQuestionsDao;
     private final Viewer viewer;
     private final int testPassingScore;
+
+    public TestingServiceImpl(TestQuestionsDao testQuestionsDao, Viewer viewer,
+                              @Value("${test.passing-score}") int testPassingScore) {
+        this.testQuestionsDao = testQuestionsDao;
+        this.viewer = viewer;
+        this.testPassingScore = testPassingScore;
+    }
 
     @Override
     public void run() {

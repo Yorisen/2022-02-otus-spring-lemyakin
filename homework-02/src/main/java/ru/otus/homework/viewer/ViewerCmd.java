@@ -1,6 +1,7 @@
 package ru.otus.homework.viewer;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import ru.otus.homework.domain.Student;
 import ru.otus.homework.domain.TestQuestion;
 import ru.otus.homework.viewer.text.TextGenerator;
@@ -8,6 +9,7 @@ import ru.otus.homework.viewer.text.TextGenerator;
 import java.util.List;
 import java.util.Scanner;
 
+@Service
 @RequiredArgsConstructor
 public class ViewerCmd implements Viewer  {
     private Scanner scanner = null;

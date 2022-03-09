@@ -2,17 +2,23 @@ package ru.otus.homework.reader;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-@RequiredArgsConstructor
+@SuppressWarnings("unused")
+@Component
 public class ReaderCSV implements Reader{
     private final String fileName;
+
+    public ReaderCSV(@Value("${file.name}") String fileName) {
+        this.fileName = fileName;
+    }
 
     @Override
     public List<String[]> readAllLines() {

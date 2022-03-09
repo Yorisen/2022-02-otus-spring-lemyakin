@@ -1,9 +1,11 @@
 package ru.otus.homework.viewer.text;
 
+import org.springframework.stereotype.Component;
 import ru.otus.homework.domain.Student;
 
 import java.util.List;
 
+@Component
 public class TextGeneratorEn implements TextGenerator{
     private static final String INTRODUCE_YOURSELF = "Introduce yourself:";
     private static final String NAME_REQUEST = "What is your name?";
