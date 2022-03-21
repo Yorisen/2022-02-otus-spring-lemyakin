@@ -13,7 +13,7 @@ import java.util.List;
 public class TestQuestionsDaoCSV implements TestQuestionsDao {
     private final Reader reader;
 
-    public static TestQuestion getTestQuestionByCSVLine(String[] csvLine) {
+    public TestQuestion getTestQuestionByCSVLine(String[] csvLine) {
         String question = csvLine[0];
         String correctAnswer = csvLine[1];
         List<String> answerOptions = new ArrayList<>();
