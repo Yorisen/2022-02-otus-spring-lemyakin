@@ -1,0 +1,8 @@
+spring:
+  messages.basename: i18n/messages
+  main.allow-circular-references: true
+file:
+  #locale: "ru-RU"
+  locale: ""
+test:
+  passing-score: 4
