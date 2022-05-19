@@ -2,6 +2,7 @@ package ru.otus.homework.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.otus.homework.domain.Genre;
 import ru.otus.homework.repositories.GenreRepository;
 
@@ -24,6 +25,7 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
+    @Transactional
     public Genre insert(String name) {
         Genre newGenre = new Genre();
         newGenre.setName(name);
@@ -32,6 +34,7 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
+    @Transactional
     public void deleteById(BigDecimal id) {
         genreRepository.deleteById(id);
     }

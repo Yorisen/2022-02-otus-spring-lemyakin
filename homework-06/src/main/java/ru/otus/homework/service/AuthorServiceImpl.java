@@ -2,6 +2,7 @@ package ru.otus.homework.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.otus.homework.domain.Author;
 import ru.otus.homework.repositories.AuthorRepository;
 
@@ -24,6 +25,7 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
+    @Transactional
     public Author insert(String name, String surname, String patronymic) {
         Author newAuthor = new Author();
         newAuthor.setName(name);
@@ -34,6 +36,7 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
+    @Transactional
     public void deleteById(BigDecimal id) {
         authorRepository.deleteById(id);
     }

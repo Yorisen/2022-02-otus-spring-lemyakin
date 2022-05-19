@@ -1,7 +1,7 @@
 package ru.otus.homework.repositories;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 import ru.otus.homework.domain.Genre;
 
 import javax.persistence.EntityManager;
@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContext;
 import java.math.BigDecimal;
 import java.util.List;
 
-@Repository
+@Component
 @RequiredArgsConstructor
 public class GenreRepositoryJpa implements GenreRepository {
     @PersistenceContext

@@ -25,7 +25,7 @@ public class Comment {
     @CreatedDate
     @Column(name = "creation_timestamp", nullable = false)
     private Instant creationTimestamp;
-    @ManyToOne(targetEntity = Book.class, cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = Book.class, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "book_id", referencedColumnName = "id", nullable = false)
     private Book book;
 }

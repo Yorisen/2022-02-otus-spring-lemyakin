@@ -7,7 +7,7 @@ import java.time.Instant;
 import java.util.List;
 
 public interface CommentService {
-    List<Comment> findAll();
+    List<Comment> findCommentsByBookId(BigDecimal id);
     Comment findById(BigDecimal id);
     Comment insert(String nickname, String content, Instant creationTimestamp, BigDecimal bookId);
     Comment update(BigDecimal id, String nickname, String content);

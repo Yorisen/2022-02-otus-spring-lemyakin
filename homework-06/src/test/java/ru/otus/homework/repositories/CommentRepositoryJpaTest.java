@@ -29,14 +29,6 @@ class CommentRepositoryJpaTest {
     private static final int EXPECTED_COMMENTS_FOR_BOOK_COUNT = 1;
 
     @Test
-    @DisplayName("возвращать список всех комментариев")
-    void shouldFindAllComments() {
-        List<Comment> expectedComments = Builder.buildExistingCommentsList();
-        List<Comment> actualComments = commentRepository.findAll();
-        assertThat(actualComments.size()).isEqualTo(expectedComments.size());
-    }
-
-    @Test
     @DisplayName("возвращать комментарий по id")
     void shouldFindCommentByCommentId() {
         Comment expectedComment = Builder.buildExistingComment();

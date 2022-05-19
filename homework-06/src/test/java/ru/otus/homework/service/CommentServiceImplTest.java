@@ -37,9 +37,8 @@ class CommentServiceImplTest {
 
     private Comment comment;
 
-    private static final int EXPECTED_COMMENTS_COUNT = 2;
+    private static final int EXPECTED_COMMENTS_COUNT = 1;
     private static final BigDecimal COMMENT_FIRST_ID = BigDecimal.valueOf(1);
-    private static final BigDecimal COMMENT_SECOND_ID = BigDecimal.valueOf(2);
 
     @BeforeEach
     public void setup() {
@@ -50,13 +49,10 @@ class CommentServiceImplTest {
     @DisplayName("получать 2 элемента при запросе всех комментариев")
     @Test
     void shouldGet2ElementsOnGettingAllComments() {
-        Comment secondComment = Builder.buildExistingComment();
-        secondComment.setId(COMMENT_SECOND_ID);
-        secondComment.setContent("Second comment");
 
-        given(commentRepository.findAll()).willReturn(List.of(comment, secondComment));
+        given(bookRepository.findById(COMMENT_FIRST_ID)).willReturn(comment.getBook());
 
-        List<Comment> result = commentService.findAll();
+        List<Comment> result = commentService.findCommentsByBookId(COMMENT_FIRST_ID);
 
         assertThat(result).isNotNull();
         assertThat(result.size()).isEqualTo(EXPECTED_COMMENTS_COUNT);

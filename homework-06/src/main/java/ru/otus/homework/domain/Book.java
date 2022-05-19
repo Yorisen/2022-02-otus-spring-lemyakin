@@ -19,10 +19,10 @@ public class Book {
     private BigDecimal id;
     @Column(name = "name", nullable = false)
     private String name;
-    @ManyToOne(targetEntity = Author.class, cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = Author.class, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "author_id", referencedColumnName = "id")
     private Author author;
-    @ManyToOne(targetEntity = Genre.class, cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = Genre.class, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "genre_id", referencedColumnName = "id")
     private Genre genre;
 
