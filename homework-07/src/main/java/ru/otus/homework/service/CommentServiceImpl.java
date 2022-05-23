@@ -27,7 +27,7 @@ public class CommentServiceImpl implements CommentService {
         Optional<Book> foundBookOptional = bookRepository.findById(id);
         if (foundBookOptional.isPresent()) {
             Book foundBook = foundBookOptional.get();
-            if(foundBook.getComments() != null && !foundBook.getComments().isEmpty()) {
+            if (foundBook.getComments() != null && !foundBook.getComments().isEmpty()) {
                 bookComments = foundBook.getComments();
             }
         }
