@@ -36,7 +36,6 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    @Transactional
     public Optional<Comment> findById(BigDecimal id) {
         return commentRepository.findById(id);
     }

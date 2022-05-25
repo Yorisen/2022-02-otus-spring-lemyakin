@@ -22,13 +22,11 @@ public class BookServiceImpl implements BookService {
     private final AuthorRepository authorRepository;
 
     @Override
-    @Transactional
-    public List<Book> findAll() {
+     public List<Book> findAll() {
         return bookRepository.findAll();
     }
 
     @Override
-    @Transactional
     public Optional<Book> findById(BigDecimal id) {
         return bookRepository.findById(id);
     }
