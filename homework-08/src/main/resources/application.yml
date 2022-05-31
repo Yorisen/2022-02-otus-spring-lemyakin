@@ -1,0 +1,13 @@
+spring:
+  main.allow-circular-references: true
+  data.mongodb:
+    authentication-database: admin
+    database: library
+    username: root
+    password: otus
+    host: localhost
+    port: 27017
+mongock:
+  runner-type: "InitializingBean"
+  change-logs-scan-package:
+    - ru.otus.homework.mongock.changelogs
