@@ -23,9 +23,9 @@ public class BooksInsertChangeLog {
         List<Comment> commentsForBook = new ArrayList<>();
         commentsForBook.add(new Comment("1", "Nick", "Not bad!", getTimestamp("2022-05-03 00:44:59+03")));
 
-        booksForInsert.add(new Book("1", "Harry Potter", new Author("Joanne Rowling"),
+        booksForInsert.add(new Book("1", "Harry Potter", new Author("1", "Joanne Rowling"),
                 new Genre("Fantasy"), commentsForBook));
-        booksForInsert.add(new Book("2", "War and Peace", new Author("Lev Tolstoy Nikolayevich"),
+        booksForInsert.add(new Book("2", "War and Peace", new Author("2","Lev Tolstoy Nikolayevich"),
                 new Genre("Classic"), new ArrayList<>()));
 
         for (Book bookForInsert: booksForInsert) {

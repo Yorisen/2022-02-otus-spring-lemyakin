@@ -1,14 +1,12 @@
 package ru.otus.homework.domain;
 
-import java.math.BigDecimal;
-import java.time.Instant;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 
 public final class Builder {
     private static final String EXISTING_BOOK_ID = "1";
     private static final String EXISTING_BOOK_NAME = "Book2";
+    private static final String EXISTING_BOOK_AUTHOR_ID = "2";
     private static final String EXISTING_BOOK_AUTHOR_NAME = "Name2";
     private static final String EXISTING_BOOK_GENRE_NAME = "Genre2";
 
@@ -19,7 +17,11 @@ public final class Builder {
     }
 
     public static Author buildExistingAuthor() {
-        return new Author(EXISTING_BOOK_AUTHOR_NAME);
+        return new Author(EXISTING_BOOK_AUTHOR_ID, EXISTING_BOOK_AUTHOR_NAME);
+    }
+
+    public static AuthorWithLinks buildExistingAuthorWithLinks() {
+        return new AuthorWithLinks(EXISTING_BOOK_AUTHOR_ID, EXISTING_BOOK_AUTHOR_NAME, List.of(EXISTING_BOOK_ID));
     }
 
     public static Genre buildExistingGenre() {

@@ -3,13 +3,10 @@ package ru.otus.homework.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.otus.homework.domain.Author;
-import ru.otus.homework.domain.Book;
-import ru.otus.homework.domain.Comment;
-import ru.otus.homework.domain.Genre;
+import ru.otus.homework.domain.*;
+import ru.otus.homework.repositories.AuthorRepository;
 import ru.otus.homework.repositories.BookRepository;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +14,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
+    private final AuthorRepository authorRepository;
 
     @Override
      public List<Book> findAll() {
@@ -30,29 +28,61 @@ public class BookServiceImpl implements BookService {
 
     @Override
     @Transactional
-    public Book insert(String bookName, String authorName, String genreName) {
+    public Book insert(String bookName, String authorId, String genreName) {
         Book bookForInsert = new Book();
 
         bookForInsert.setName(bookName);
         bookForInsert.setGenre(new Genre(genreName));
-        bookForInsert.setAuthor(new Author(authorName));
 
-        return bookRepository.save(bookForInsert);
+        Book insertedBook = null;
+
+        Optional<AuthorWithLinks> authorOptional = authorRepository.findById(authorId);
+        if (authorOptional.isPresent()) {
+            AuthorWithLinks author = authorOptional.get();
+
+            bookForInsert.setAuthor(new Author(author.getId(), author.getName()));
+            insertedBook = bookRepository.save(bookForInsert);
+
+            author.getBookIds().add(insertedBook.getId());
+            authorRepository.save(author);
+        }
+
+        return insertedBook;
     }
 
     @Override
-    public Book update(String bookId, String bookName, String authorName, String genreName) {
+    public Book update(String bookId, String bookName, String authorId, String genreName) {
         Book updatedBook = null;
         Optional<Book> bookForUpdateOptional = bookRepository.findById(bookId);
 
         if (bookForUpdateOptional.isPresent()) {
             Book bookForUpdate = bookForUpdateOptional.get();
 
-            bookForUpdate.setGenre(new Genre(genreName));
-            bookForUpdate.setAuthor(new Author(authorName));
             bookForUpdate.setName(bookName);
+            bookForUpdate.setGenre(new Genre(genreName));
 
-            updatedBook = bookRepository.save(bookForUpdate);
+            Optional<AuthorWithLinks> authorOptional = authorRepository.findById(authorId);
+            if (authorOptional.isPresent()) {
+                AuthorWithLinks author = authorOptional.get();
+                Author oldAuthor = bookForUpdate.getAuthor();
+
+                if (!oldAuthor.getId().equals(author.getId())) {
+                    String oldAuthorId = bookForUpdate.getAuthor().getId();
+
+                    Optional<AuthorWithLinks> oldAuthorWithLinksOptional = authorRepository.findById(oldAuthorId);
+                    if (oldAuthorWithLinksOptional.isPresent()) {
+                        AuthorWithLinks oldAuthorWithLinks = oldAuthorWithLinksOptional.get();
+                        oldAuthorWithLinks.getBookIds().remove(bookId);
+                        authorRepository.save(oldAuthorWithLinks);
+                    }
+
+                    bookForUpdate.setAuthor(new Author(author.getId(), author.getName()));
+                    author.getBookIds().add(bookForUpdate.getId());
+                    authorRepository.save(author);
+                }
+
+                updatedBook = bookRepository.save(bookForUpdate);
+            }
         }
 
         return updatedBook;

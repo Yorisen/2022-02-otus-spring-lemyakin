@@ -7,10 +7,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import ru.otus.homework.domain.Book;
-import ru.otus.homework.domain.Builder;
-import ru.otus.homework.domain.Comment;
-import ru.otus.homework.domain.Genre;
+import ru.otus.homework.domain.*;
+import ru.otus.homework.repositories.AuthorRepository;
 import ru.otus.homework.repositories.BookRepository;
 
 import java.time.Instant;
@@ -28,12 +26,13 @@ import static org.mockito.Mockito.verify;
 class BookServiceImplTest {
     @Mock
     private BookRepository bookRepository;
+    @Mock
+    private AuthorRepository authorRepository;
 
     @InjectMocks
     private BookServiceImpl bookService;
 
     private static final int EXPECTED_BOOKS_COUNT = 2;
-    private static final String BOOK_FIRST_ID = "1";
     private static final String BOOK_SECOND_ID = "2";
 
     Book book;
@@ -41,13 +40,17 @@ class BookServiceImplTest {
     Optional<Genre> genreOptional;
     Optional<Book> bookOptional;
 
+    AuthorWithLinks existingAuthor;
+    Optional<AuthorWithLinks> existingAuthorOptional;
+
     @BeforeEach
     public void setup() {
         book = Builder.buildExistingBook();
-        book.setId(BOOK_FIRST_ID);
         bookOptional = Optional.ofNullable(book);
         genreOptional = Optional.ofNullable(book.getGenre());
         comment = new Comment("1", "TestNickname", "Some comment", Instant.now());
+        existingAuthor = Builder.buildExistingAuthorWithLinks();
+        existingAuthorOptional = Optional.ofNullable(existingAuthor);
     }
 
     @DisplayName("получать 2 элемента при запросе всех книг")
@@ -79,7 +82,8 @@ class BookServiceImplTest {
         newBook.setComments(null);
 
         given(bookRepository.save(newBook)).willReturn(book);
-        Book actualBook = bookService.insert(newBook.getName(), newBook.getAuthor().getName(), newBook.getGenre().getName());
+        given(authorRepository.findById(existingAuthor.getId())).willReturn(existingAuthorOptional);
+        Book actualBook = bookService.insert(newBook.getName(), newBook.getAuthor().getId(), newBook.getGenre().getName());
         assertThat(actualBook).isEqualTo(book);
     }
 
@@ -98,8 +102,10 @@ class BookServiceImplTest {
 
         given(bookRepository.findById(bookForUpdate.getId())).willReturn(bookOptional);
         given(bookRepository.save(bookForUpdate)).willReturn(updatedBook);
+        given(authorRepository.findById(existingAuthor.getId())).willReturn(existingAuthorOptional);
+
         Book actualBook = bookService.update(bookForUpdate.getId(), bookForUpdate.getName(),
-                bookForUpdate.getAuthor().getName(), bookForUpdate.getGenre().getName());
+                bookForUpdate.getAuthor().getId(), bookForUpdate.getGenre().getName());
 
         assertThat(actualBook).isEqualTo(updatedBook);
     }

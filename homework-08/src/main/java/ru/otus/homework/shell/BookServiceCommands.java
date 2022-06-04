@@ -10,7 +10,6 @@ import ru.otus.homework.service.BookService;
 import ru.otus.homework.shell.viewer.BooksViewer;
 import ru.otus.homework.shell.viewer.CommentsViewer;
 
-import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +37,7 @@ public class BookServiceCommands {
 
     @ShellMethod(value = "Insert new book", key = {"book_insert", "bi"})
     public void insertBook(@ShellOption({"-n", "--name"}) String name,
-                           @ShellOption({"-a", "--author_name"}) String authorId,
+                           @ShellOption({"-ai", "--author_id"}) String authorId,
                            @ShellOption({"-g", "--genre_name"}) String genreId) {
         bookService.insert(name, authorId, genreId);
     }
@@ -51,7 +50,7 @@ public class BookServiceCommands {
     @ShellMethod(value = "Update book", key = {"book_update", "bu"})
     public void updateBook(@ShellOption({"-i", "--id"}) String id,
                            @ShellOption({"-n", "--name"}) String name,
-                           @ShellOption({"-a", "--author_name"}) String authorId,
+                           @ShellOption({"-ai", "--author_id"}) String authorId,
                            @ShellOption({"-g", "--genre_name"}) String genreId) {
         bookService.update(id, name, authorId, genreId);
     }
