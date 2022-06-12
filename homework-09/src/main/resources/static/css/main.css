@@ -1,0 +1,147 @@
+body {
+    font-family: sans-serif;
+    background-color: #fdfdfd;
+}
+
+
+.header {
+    position: relative;
+}
+.header .header__title {
+    text-align: left;
+    font-weight: normal;
+    font-size: 2em;
+    color: #87B36A;
+    margin: 21px 10% 24px;
+    padding-left: 58px;
+}
+.header .header__buttons {
+    position: absolute;
+    top: 1px;
+    right: 0;
+    margin: 0 10%;
+}
+
+
+.wrapper {
+    padding: 0 10%;
+}
+
+
+.logo {
+    position: absolute;
+    top: -2px;
+    left: 0px;
+    z-index: 1;
+    height: 36px;
+    width: 47px;
+    margin-left: 10%;
+}
+.logo .logo__link {
+    display: block;
+}
+
+
+.link {
+    color: #87b36a;
+    cursor: pointer;
+    text-decoration: none;
+    border-bottom: 1px solid;
+}
+.link:hover {
+    color: #96c477;
+}
+.link:focus {
+    outline: thin dotted #87b36a;
+    outline-offset: 4px;
+    border-radius: 1px;
+}
+.link_margin-left {
+    margin-left: 4px;
+}
+.link_no-underline {
+    border-bottom: 0;
+}
+
+
+.grid {
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+.grid .grid__header {
+  height: 60px;
+  background: #87b36a;
+  font-size: 18px;
+  color: #fff;
+  line-height: 1.2;
+  font-weight: unset;
+}
+.grid .grid__body {
+  height: 50px;
+  font-size: 15px;
+  color: #808080;
+  line-height: 1.2;
+  font-weight: unset;
+}
+.grid .grid__body:nth-child(2n) {
+  background-color: #f5f5f5;
+}
+.grid .grid__row .grid__col_first {
+    padding-left: 40px;
+}
+.grid .grid__row .grid__col_last {
+    padding-right: 40px;
+}
+.grid .grid__row .grid__col_text-right {
+    text-align: right;
+}
+
+
+.form {
+    width: 554px;
+}
+.form .form__input-title {
+    cursor: pointer;
+    display: inline-block;
+    width: 148px;
+}
+.form .form__input {
+    margin: 5px 0px 13px;
+    padding: 2px 0;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 1px solid #87b36a;
+    width: 400px;
+}
+.form .form__buttons:focus,
+.form .form__input:focus {
+    outline: thin dotted #87b36a;
+    outline-offset: 4px;
+    border-radius: 1px;
+}
+.form .form__item_hide {
+    display: none;
+}
+.form .form__buttons {
+    margin: 20px 0;
+    text-align: right;
+}
+
+
+.button {
+    background-color: #87b36a;
+    color: #f5f5f5;
+    border: 0;
+    padding: 6px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.button:hover {
+    background-color: #96c477;
+}
