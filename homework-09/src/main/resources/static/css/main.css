@@ -2,6 +2,10 @@ body {
     font-family: sans-serif;
     background-color: #fdfdfd;
 }
+::selection {
+  background-color: #87b36a;
+  color: #fff;
+}
 
 
 .header {
@@ -118,6 +122,7 @@ body {
     border-top: 0;
     border-bottom: 1px solid #87b36a;
     width: 400px;
+    background-color: #fdfdfd;
 }
 .form .form__buttons:focus,
 .form .form__input:focus {
@@ -145,3 +150,5 @@ body {
 .button:hover {
     background-color: #96c477;
 }
+
+

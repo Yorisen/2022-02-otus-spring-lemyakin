@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface GenreService {
-    List<Genre> getAll();
+    List<Genre> findAll();
     Optional<Genre> getById(BigDecimal id);
     Genre insert(String name);
     void deleteById(BigDecimal id);

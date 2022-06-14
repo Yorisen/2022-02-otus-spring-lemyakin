@@ -32,8 +32,16 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book save(Book book) {
-        return bookRepository.save(book);
+    public Book save(BigDecimal bookId, String bookName, BigDecimal authorId, BigDecimal genreId) {
+        Book book;
+
+        if (bookId != null) {
+            book = update(bookId, bookName, authorId, genreId);
+        } else {
+            book = insert(bookName, authorId, genreId);
+        }
+
+        return book;
     }
 
     @Override

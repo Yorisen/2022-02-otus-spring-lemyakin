@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface BookService {
     List<Book> findAll();
     Optional<Book> findById(BigDecimal id);
-    Book save(Book book);
+    Book save(BigDecimal bookId, String bookName, BigDecimal authorId, BigDecimal genreId);
     Book insert(String bookName, BigDecimal authorId, BigDecimal genreId);
     Book update(BigDecimal bookId, String bookName, BigDecimal authorId, BigDecimal genreId);
     void deleteById(BigDecimal id);

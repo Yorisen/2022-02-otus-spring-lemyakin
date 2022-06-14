@@ -50,7 +50,7 @@ class GenreServiceImplTest {
 
         given(genreRepository.findAll()).willReturn(List.of(genre, secondGenre));
 
-        List<Genre> result = genreService.getAll();
+        List<Genre> result = genreService.findAll();
         assertThat(result).isNotNull();
         assertThat(result.size()).isEqualTo(EXPECTED_GENRES_COUNT);
     }

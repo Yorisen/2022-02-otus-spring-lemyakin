@@ -30,20 +30,16 @@
                     <input class="form__input" id="book-name" type="text" th:field="*{name}" value="Book name"/>
                 </div>
                 <div class="form__item">
-                    <label class="form__input-title" for="author-name">Author name:</label>
-                    <input class="form__input" id="author-name" type="text" th:field="*{author.name}" value="Author name"/>
-                </div>
-                <div class="form__item">
-                    <label class="form__input-title" for="author-surname">Author surname:</label>
-                    <input class="form__input" id="author-surname" type="text" th:field="*{author.surname}" value="Author surname"/>
-                </div>
-                <div class="form__item">
-                    <label class="form__input-title" for="author-patronymic">Author patronymic:</label>
-                    <input class="form__input" id="author-patronymic" type="text" th:field="*{author.patronymic}" value="Author patronymic"/>
+                    <label class="form__input-title" for="author">Author:</label>
+                    <select class="form__input combo-box" id="author" th:field="*{author.id}">
+                        <option class="combo-box__item" value="Some author" th:value="${author.id}" th:each="author: ${authors}" th:selected="${author.id==book.author.id}" th:text="${author.surname + ' ' + author.name + ' ' + author.patronymic}"></option>
+                    </select>
                 </div>
                 <div class="form__item">
                     <label class="form__input-title" for="genre">Genre:</label>
-                    <input class="form__input" id="genre" type="text" th:field="*{genre.name}" value="Some genre"/>
+                    <select class="form__input combo-box" id="genre" th:field="*{genre.id}">
+                        <option class="combo-box__item" value="Some genre" th:value="${genre.id}" th:each="genre: ${genres}" th:selected="${genre.id==book.genre.id}" th:text="${genre.name}"></option>
+                    </select>
                 </div>
                 <div class="form__buttons">
                     <a class="link link_no-underline" tabindex="-1" href="/"><input class="button" type="button" value="Cancel"></a>
