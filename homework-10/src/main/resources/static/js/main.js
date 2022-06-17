@@ -126,10 +126,10 @@
         });
     }
 
-    function fillAuthorsComboBox(book_id) {
-        sendGetRequest("/authors", parseJsonToAuthorsComboBoxOptions, book_id);
+    function fillAuthorsComboBox(author_id) {
+        sendGetRequest("/authors", parseJsonToAuthorsComboBoxOptions, author_id);
     }
-    function parseJsonToAuthorsComboBoxOptions(authors, book_id) {
+    function parseJsonToAuthorsComboBoxOptions(authors, author_id) {
         var bookPopupAuthorsComboBox = document.getElementById("author");
         authors.forEach(author => {
             var option = document.createElement('option');
@@ -138,13 +138,13 @@
 
             bookPopupAuthorsComboBox.appendChild(option);
         });
-        bookPopupAuthorsComboBox.value = book_id;
+        bookPopupAuthorsComboBox.value = author_id;
     }
 
-    function fillGenresComboBox(book_id) {
-        sendGetRequest("/genres", parseJsonToGenresComboBoxOptions, book_id);
+    function fillGenresComboBox(genre_id) {
+        sendGetRequest("/genres", parseJsonToGenresComboBoxOptions, genre_id);
     }
-    function parseJsonToGenresComboBoxOptions(genres, book_id) {
+    function parseJsonToGenresComboBoxOptions(genres, genre_id) {
         var bookPopupGenresComboBox = document.getElementById("genre");
         genres.forEach(genre => {
             var option = document.createElement('option');
@@ -153,7 +153,7 @@
 
             bookPopupGenresComboBox.appendChild(option);
         });
-        bookPopupGenresComboBox.value = book_id;
+        bookPopupGenresComboBox.value = genre_id;
     }
 
     function sendGetRequest(uri, callback, param) {
