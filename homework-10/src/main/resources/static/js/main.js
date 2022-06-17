@@ -77,8 +77,8 @@
     function fillBookPopup(book) {
         clearBookPopup();
 
-        fillAuthorsComboBox(book ? parseInt(book.id) : -1);
-        fillGenresComboBox(book ? parseInt(book.id) : -1);
+        fillAuthorsComboBox(book ? parseInt(book.author.id) : -1);
+        fillGenresComboBox(book ? parseInt(book.genre.id) : -1);
         fillBookInfo(book);
     }
     function fillBookInfo(book) {
