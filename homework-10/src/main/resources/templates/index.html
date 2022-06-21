@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Library</title>
+        <link href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFy4XP9cuFz/XLhc/1y4XP9cuFz/XLhc/wAAAABOvE4HTbtNCQAAAABcuFz/XLhc/1y4XP9cuFz/XLhc/1y4XP9cuFz/XLhc/y5cLm4AAAAAAAAAAAAAAABcuFz/XLhc8Vy4XPBcuFz/AAAAAAAAAAAAAAAALlwubly4XP9cuFz/XLhc/wAAAABcuFz/XLhc/1y4XP9cuFz/XLhc/1y4XPFcuFzwXLhc/1y4XP9cuFz/XLhc/1y4XP8AAAAAXLhc/1y4XP8AAAAAXLhc/1y4XP9cuFz/XLhc/1y4XP9cuFzxXLhc8Fy4XP9cuFz/XLhc/1y4XP9cuFz/AAAAAFy4XP9cuFz/AAAAAFy4XP9cuFz/XLhc/1y4XP9cuFz/XLhc8Vy4XPBcuFz/XLhc/1y4XP9cuFz/XLhc/wAAAABcuFz/XLhc/wAAAABcuFz/XLhc/1y4XP9cuFz/XLhc/1y4XPFcuFzwXLhc/1y4XP9cuFz/XLhc/1y4XP8AAAAAXLhc/1y4XP8AAAAAXLhc/1y4XP9cuFz/XLhc/1y4XP9cuFzxXLhc8Fy4XP9cuFz/XLhc/1y4XP9cuFz/AAAAAFy4XP9cuFz/AAAAAFy4XP9cuFz/XLhc/1y4XP9cuFz/XLhc8Vy4XPBcuFz/XLhc/1y4XP9cuFz/XLhc/wAAAABcuFz/XLhc/wAAAABcuFz/XLhc/1y4XP9cuFz/XLhc/1y4XPFcuFzwXLhc/1y4XP9cuFz/XLhc/1y4XP8AAAAAXLhc/1y4XP8AAAAAXLhc/1y4XP9cuFz/XLhc/1y4XP9cuFzwXLhc6Vy4XP9cuFz/XLhc/1y4XP9cuFz/AAAAAFy4XP8AAAAAAAAAAFy4XP9cuFz/XLhc/1y4XP9cuFz/AAAAAAAAAABcuFz/XLhc/1y4XP9cuFz/XLhc/wAAAAAAAAAAAAAAAAAAAABcuFz/XLhc/1y4XP9YuFhRAAAAAAAAAAAAAAAAAAAAAFy5XElcuFz/XLhc/1y4XP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAP//AAADwAAAPDwAAEACAABAAgAAQAIAAEACAABAAgAAQAIAAEACAABAAgAAwYMAAMfjAAD//wAA//8AAA==" rel="icon" type="image/x-icon" />
+        <link rel="stylesheet" th:href="@{/css/normalize.css}" href="../static/css/normalize.css">
+        <link rel="stylesheet" th:href="@{/css/main.css}" href="../static/css/main.css">
+        <meta name="theme-color" content="#fafafa">
+    </head>
+
+    <body>
+        <header class="header">
+            <h1 class="header__title">List of books</h1>
+            <div class="logo" title="Library home page">
+                <a class="link link_no-underline logo__link" href="/">
+                    <img class="logo__img" height="36" width="47"  th:src="@{/img/logo.png}" src="../static/img/logo.png">
+                </a>
+            </div>
+            <div class="header__buttons">
+                <input class="button button_add-book" type="button" value="Add book">
+            </div>
+        </header>
+        <main class="wrapper">
+            <table class="grid grid_books">
+                <tr class="grid__header grid__row">
+                    <th class="grid__col grid__col_first">Name</th>
+                    <th class="grid__col">Author</th>
+                    <th class="grid__col grid__col_text-right">Genre</th>
+                    <th class="grid__col grid__col_last grid__col_text-right"></th>
+                </tr>
+                <!--<tr class="grid__body grid__row" th:each="book: ${books}">
+                    <td class="grid__col grid__col_first" th:text="${book.name}">Some book</td>
+                    <td class="grid__col" th:text="${book.author.surname + ' ' + book.author.name + ' ' + book.author.patronymic}">Some author name</td>
+                    <td class="grid__col grid__col_text-right" th:text="${book.genre.name}">Some genre</td>
+                    <th class="grid__col grid__col_last grid__col_text-right">
+                        <a class="link" onclick="return popup();" th:href="@{/book/delete(id=${book.id})}" href="book.html">Delete</a>
+                        <a class="link" th:href="@{/book/edit(id=${book.id})}" href="book.html">Edit</a>
+                    </th>
+                </tr>-->
+            </table>
+        </main>
+        <div class="popup popup_book popup_hide">
+            <div class="form">
+                <form action="" class="form__content">
+                    <div class="form__item form__item_hide">
+                        <label class="form__input-title" for="book-id">ID:</label>
+                        <input class="form__input" name="id" id="book-id" type="text"/>
+                    </div>
+                    <div class="form__item">
+                        <label class="form__input-title" for="book-name">Book name:</label>
+                        <input class="form__input" name="name" id="book-name" type="text"/>
+                    </div>
+                    <div class="form__item">
+                        <label class="form__input-title" for="author">Author:</label>
+                        <select class="combo-box" name="authorId" id="author">
+                            <option class="combo-box__item"></option>
+                        </select>
+                    </div>
+                    <div class="form__item">
+                        <label class="form__input-title" for="genre">Genre:</label>
+                        <select class="combo-box" name="genreId" id="genre">
+                            <option class="combo-box__item"></option>
+                        </select>
+                    </div>
+                    <div class="form__buttons">
+                        <input class="button button_cancel" type="button" value="Cancel">
+                        <input class="button button_save" type="button" value="Save">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--<script>
+            function popup() {
+                return confirm("Are you sure you want to delete the book?")
+            }
+        </script>-->
+        <script th:src="@{/js/main.js}" src="../static/js/main.js"></script>
+    </body>
+</html>
