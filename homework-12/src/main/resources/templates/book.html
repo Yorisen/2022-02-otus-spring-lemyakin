@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:object="${book}">
+
+<head>
+    <meta charset="utf-8">
+    <title th:text="*{id} ? 'Book: ' + *{name} + ' - editing' : 'Book adding'">Book: Book Name - editing or adding</title>
+    <link href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFy4XP9cuFz/XLhc/1y4XP9cuFz/XLhc/wAAAABOvE4HTbtNCQAAAABcuFz/XLhc/1y4XP9cuFz/XLhc/1y4XP9cuFz/XLhc/y5cLm4AAAAAAAAAAAAAAABcuFz/XLhc8Vy4XPBcuFz/AAAAAAAAAAAAAAAALlwubly4XP9cuFz/XLhc/wAAAABcuFz/XLhc/1y4XP9cuFz/XLhc/1y4XPFcuFzwXLhc/1y4XP9cuFz/XLhc/1y4XP8AAAAAXLhc/1y4XP8AAAAAXLhc/1y4XP9cuFz/XLhc/1y4XP9cuFzxXLhc8Fy4XP9cuFz/XLhc/1y4XP9cuFz/AAAAAFy4XP9cuFz/AAAAAFy4XP9cuFz/XLhc/1y4XP9cuFz/XLhc8Vy4XPBcuFz/XLhc/1y4XP9cuFz/XLhc/wAAAABcuFz/XLhc/wAAAABcuFz/XLhc/1y4XP9cuFz/XLhc/1y4XPFcuFzwXLhc/1y4XP9cuFz/XLhc/1y4XP8AAAAAXLhc/1y4XP8AAAAAXLhc/1y4XP9cuFz/XLhc/1y4XP9cuFzxXLhc8Fy4XP9cuFz/XLhc/1y4XP9cuFz/AAAAAFy4XP9cuFz/AAAAAFy4XP9cuFz/XLhc/1y4XP9cuFz/XLhc8Vy4XPBcuFz/XLhc/1y4XP9cuFz/XLhc/wAAAABcuFz/XLhc/wAAAABcuFz/XLhc/1y4XP9cuFz/XLhc/1y4XPFcuFzwXLhc/1y4XP9cuFz/XLhc/1y4XP8AAAAAXLhc/1y4XP8AAAAAXLhc/1y4XP9cuFz/XLhc/1y4XP9cuFzwXLhc6Vy4XP9cuFz/XLhc/1y4XP9cuFz/AAAAAFy4XP8AAAAAAAAAAFy4XP9cuFz/XLhc/1y4XP9cuFz/AAAAAAAAAABcuFz/XLhc/1y4XP9cuFz/XLhc/wAAAAAAAAAAAAAAAAAAAABcuFz/XLhc/1y4XP9YuFhRAAAAAAAAAAAAAAAAAAAAAFy5XElcuFz/XLhc/1y4XP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAP//AAADwAAAPDwAAEACAABAAgAAQAIAAEACAABAAgAAQAIAAEACAABAAgAAwYMAAMfjAAD//wAA//8AAA==" rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" th:href="@{/css/normalize.css}" href="../static/css/normalize.css">
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="../static/css/main.css">
+</head>
+
+<body>
+    <header class="header">
+        <h1 class="header__title" th:text="*{id} ? 'Book editing' : 'Book adding'">Book editing or adding</h1>
+        <div class="logo" title="Library home page">
+            <a class="link link_no-underline logo__link" href="/">
+                <img class="logo__img" height="36" width="47"  th:src="@{/img/logo.png}" src="../static/img/logo.png">
+            </a>
+        </div>
+        <div class="header__buttons">
+            <a class="link" tabindex="-1" href="/logout"><input class="button" type="button" value="Logout"></a>
+        </div>
+    </header>
+    <main class="wrapper">
+        <div class="form">
+            <form action="book.html" th:action="@{/book/edit(id=*{id})}" th:method="post">
+                <div class="form__item form__item_hide">
+                    <label class="form__input-title" for="book-id">ID:</label>
+                    <input class="form__input" id="book-id" type="text" th:field="*{id}" value="300"/>
+                </div>
+                <div class="form__item">
+                    <label class="form__input-title" for="book-name">Book name:</label>
+                    <input class="form__input" id="book-name" type="text" th:field="*{name}" value="Book name"/>
+                </div>
+                <div class="form__item">
+                    <label class="form__input-title" for="author">Author:</label>
+                    <select class="form__input combo-box" id="author" th:field="*{author.id}">
+                        <option class="combo-box__item" value="Some author" th:value="${author.id}" th:each="author: ${authors}" th:selected="${author.id==book.author.id}" th:text="${author.surname + ' ' + author.name + ' ' + author.patronymic}"></option>
+                    </select>
+                </div>
+                <div class="form__item">
+                    <label class="form__input-title" for="genre">Genre:</label>
+                    <select class="form__input combo-box" id="genre" th:field="*{genre.id}">
+                        <option class="combo-box__item" value="Some genre" th:value="${genre.id}" th:each="genre: ${genres}" th:selected="${genre.id==book.genre.id}" th:text="${genre.name}"></option>
+                    </select>
+                </div>
+                <div class="form__buttons">
+                    <a class="link link_no-underline" tabindex="-1" href="/"><input class="button" type="button" value="Cancel"></a>
+                    <input class="button" type="submit" value="Save">
+                </div>
+
+            </form>
+        </div>
+    </main>
+</body>
+
+</html>
