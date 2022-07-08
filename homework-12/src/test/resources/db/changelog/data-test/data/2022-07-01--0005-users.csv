@@ -1,0 +1,3 @@
+id;login;password;role
+1;admin;123456;ADMIN
+2;user;test;USER
