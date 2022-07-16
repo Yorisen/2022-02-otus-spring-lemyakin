@@ -1,0 +1,10 @@
+id;name;author_id;genre_id
+1;Harry Potter: Philosopher's Stone;1;1
+2;Harry Potter: Chamber of Secrets;1;1
+3;Harry Potter: Prisoner of Azkaban;1;1
+4;Harry Potter: Goblet of Fire;1;1
+5;Harry Potter: Order of the Phoenix;1;1
+6;Harry Potter: Half-Blood Prince;1;1
+7;Harry Potter: Deathly Hallows;1;1
+8;War and Peace;2;3
+9;Anna Karenina;2;3

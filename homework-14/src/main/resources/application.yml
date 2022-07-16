@@ -1,0 +1,34 @@
+spring:
+  main.allow-circular-references: true
+  datasource:
+    url: jdbc:h2:mem:testdb
+
+  h2:
+    console:
+      path: /h2-console
+      settings:
+        web-allow-others: true
+
+  mongodb:
+    embedded:
+      version: 3.4.0
+
+  batch:
+    job:
+      enabled: false
+
+  jpa:
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: false
+
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/db.changelog-master.xml
+
+app:
+  chunk-size: 5
