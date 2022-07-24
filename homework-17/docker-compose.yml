@@ -1,0 +1,24 @@
+services:
+  webapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    privileged: true
+    image: homework-17:latest
+    ports:
+      - "80:8080"
+
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:h2:mem:testdb
+      - JPA_SHOW_SQL=true
+      - JPA_FORMAT_SQL=false
+      - JPA_GENERATE_DDL=false
+      - JPA_HIBERNATE_DDL_AUTO=none
+      - LIQUIBASE_ENABLED=true
+      - LIQUIBASE_CHANGE_LOG=classpath:/db/changelog/db.changelog-master.xml
+
+    networks:
+      - otus
+
+networks:
+  otus:
