@@ -95,7 +95,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     public Optional<Comment> buildFallbackFind(BigDecimal id) {
-        return Optional.empty();
+        return Optional.ofNullable(new Comment());
     }
 
     public Comment buildFallbackInsert(String bookName, BigDecimal authorId, BigDecimal genreId) {

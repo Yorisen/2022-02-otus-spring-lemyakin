@@ -51,7 +51,7 @@ public class GenreServiceImpl implements GenreService {
     }
 
     public Optional<Genre> buildFallbackFind(BigDecimal id) {
-        return Optional.empty();
+        return Optional.ofNullable(new Genre());
     }
 
     public Genre buildFallbackInsert(String name) {

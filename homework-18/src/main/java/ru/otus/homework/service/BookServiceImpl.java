@@ -32,6 +32,11 @@ public class BookServiceImpl implements BookService {
     @HystrixCommand(fallbackMethod="buildFallbackFind")
     @Override
     public Optional<Book> findById(BigDecimal id) {
+        /*try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }*/
         return bookRepository.findById(id);
     }
 
@@ -123,7 +128,7 @@ public class BookServiceImpl implements BookService {
     }
 
     public Optional<Book> buildFallbackFind(BigDecimal id) {
-        return Optional.empty();
+        return Optional.ofNullable(new Book());
     }
 
     public Book buildFallbackInsert(String bookName, BigDecimal authorId, BigDecimal genreId) {

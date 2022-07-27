@@ -58,7 +58,7 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     public Optional<Author> buildFallbackFind(BigDecimal id) {
-        return Optional.empty();
+        return Optional.ofNullable(new Author());
     }
 
     public Author buildFallbackInsert(String name, String surname, String patronymic) {
