@@ -1,0 +1,36 @@
+services:
+  webapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    privileged: true
+    image: homework-17:latest
+    ports:
+      - "80:8080"
+    depends_on:
+      - "postgres"
+    environment:
+      - JPA_SHOW_SQL=true
+      - JPA_FORMAT_SQL=false
+      - JPA_GENERATE_DDL=false
+      - JPA_HIBERNATE_DDL_AUTO=none
+      - LIQUIBASE_ENABLED=true
+      - LIQUIBASE_CHANGE_LOG=classpath:/db/changelog/db.changelog-master.xml
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.postgresql.Driver
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+    networks:
+      - otus
+  postgres:
+    image: "postgres:14.4-alpine"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=db
+    networks:
+      - otus
+networks:
+  otus:
